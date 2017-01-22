@@ -1,0 +1,12 @@
+.container{background: #0E490E; color: #FEFEFE; height: 100%;}
+.footer{position: fixed; bottom: 0px; background:#000000; width: 100%;
+text-align:center; padding: 5px; color:#FFFFFF;}
+.nav{color: #000000; text-decoration:none; text-shadow:none; padding: 10px;
+	background: #E0E0E0; border-radius: 6px;}
+.chart-canvas{ width: 400px; height: 400px; margin: 10px; padding: 0px; 
+	background: #D0D0D0; border: 1px solid #F4FF00; display: inline-block;
+	text-align: center; }
+.chart-topic { background: #00006A; color: #FFFFFF; font-size: 14pt; 
+text-align: center; padding: 10px 0 10px 0; border-bottom:1px solid #F4FF00;}
+.spacer{display:block; height:40px;}
+.pie-canvas{width:400px; height:350px;}

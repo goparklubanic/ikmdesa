@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/stkm.css" type="text/css">
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+<!-- chart library -->
+<script type="text/javascript" src="js/canvasjs.min.js"></script>
+<script type="text/javascript" src="js/stkm.js"></script>
+</head>
+<body>
+
+<!-- page role -->
+<div data-role="page" id="grafik" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+	  <div style="text-align:center">
+		<h1>Survey Tingkat Kepuasan Masyarakat<br/>Terhadap Pelayanan di Kelurahan Rejasa</h1>
+	  </div>
+	<!-- grafik area -->
+	<div class="chart-canvas">
+		<div class="chart-topic">KESESUAIAN PERSYARATAN</div>
+		<div id="pie-syarat" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KEMUDAHAN PROSEDUR</div>
+		<div id="pie-mudah" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KECEPATAN PELAYANAN</div>
+		<div id="pie-cepat" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KEJELASAN HASIL</div>
+		<div id="pie-jelas" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">TANGGUNG JAWAB PETUGAS</div>
+		<div id="pie-tawab" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KEDISIPLINAN PETUGAS</div>
+		<div id="pie-disiplin" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">SIKAP PETUGAS</div>
+		<div id="pie-sikap" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KEMAMPUAN PETUGAS</div>
+		<div id="pie-mampu" class="pie-canvas"></div>
+	</div>
+	
+	<div class="chart-canvas">
+		<div class="chart-topic">KEWAJARAN BIAYA</div>
+		<div id="pie-biaya" class="pie-canvas"></div>
+	</div>
+	
+    <br /><br /><a href="#responden" class="nav">Mulai Survey</a>
+  </div>
+  <div class="spacer">&nbsp;</div>
+</div> 
+<!-- page role -->
+	
+<!-- page role -->
+<div data-role="page" id="responden" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <!-- form -->
+	<fieldset data-role="controlgroup">
+		<legend>Jenis Kelamin</legend>
+		<input name="responden_sx" id="responden_sx_l" value="L" checked="checked" type="radio">
+		<label for="responden_sx_l">Laki-laki</label>
+				
+		<input name="responden_sx" id="responden_sx_p" value="P" type="radio">
+		<label for="responden_sx_p">Perempuan</label>
+	</fieldset>
+	
+	<label for="responden_age">Usia</label>
+	<input name="responden_age" id="responden_age" value="30" min="15" max="60" type="range">
+	
+	<label for="ressponden_edu">Pendidikan</label>
+	<select name="ressponden_edu" id="responden_edu">
+	  <option value="SLTP">SLTP / Sederajat</option>
+	  <option value="SLTA">SLTA / Sederajat</option>
+	  <option value="Diploma">D1 / D2 / D3 / Sederajat</option>
+	  <option value="S1">S1 / Sarjana</option>
+	  <option value="S2">S2 / Magister</option>
+	  <option value="S3">S3 / Doktoral</option>
+	  <option value="Lainnya">S1 / Sarjana</option>
+	</select>
+	
+	<label for="responden_job">Pekerjaan</label>
+	<select name="responden_job" id="responden_job">
+	  <option value="PNI_TNI_POLRI">PNS / TNI / POLRI</option>
+	  <option value="Petani">Petani</option>
+	  <option value="Pedagang">Pedagang</option>
+	  <option value="Wiraswasta">Wiraswasta</option>
+	  <option value="Lainnya">Lainnya</option>
+	</select>
+	
+	<label for="survey_tgt">Pernyataan ditujukan kepada</label>
+	<select name="survey_tgt" id="survey_tgt">
+	  <option value="sekretariat">Sekretariat</option>
+	  <option value="kemasyarakatan">Seksi Kemasyarakatan</option>
+	  <option value="pembangunan">Seksi Pembangunan</option>
+	  <option value="pemerintahan">Seksi Pemerintahan</option>
+	</select>
+    <!-- form -->
+    <br />
+    <br><a href="#syarat" class="nav" id="save_responden">Selanjutnya</a>
+  </div>
+
+</div> 
+
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="syarat" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kesesuaian persyaratan pelayanan dengan jenis pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_1" id="q1_tdk" value="tdk" type="radio">
+		<label for="q1_tdk">Tidak Sesuai</label>
+		<input name="quest_1" id="q1_krg" value="krg" type="radio">
+		<label for="q1_krg">Kurang Sesuai</label>
+		<input name="quest_1" id="q1_ckp" value="ckp" type="radio">
+		<label for="q1_ckp">Sesuai</label>
+		<input name="quest_1" id="q1_sgt" value="sgt" type="radio">
+		<label for="q1_sgt">Sangat Sesuai</label>
+	</fieldset>
+    <br><a href="#mudah" id="save-syarat" class="nav">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="mudah" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kemudahan prosedur pelayanan di unit ini</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_2" id="q2_tdk" value="tdk" type="radio">
+		<label for="q2_tdk">Tidak Mudah</label>
+		<input name="quest_2" id="q2_krg" value="krg" type="radio">
+		<label for="q2_krg">Kurang Mudah</label>
+		<input name="quest_2" id="q2_ckp" value="ckp" type="radio">
+		<label for="q2_ckp">Mudah</label>
+		<input name="quest_2" id="q2_sgt" value="sgt" type="radio">
+		<label for="q2_sgt">Sangat Mudah</label>
+	</fieldset>
+    <br><a href="#cepat" class="nav" id="save-mudah">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="cepat" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kecepatan waktu dalam memberi pelayanan</p>
+</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_3" id="q3_tdk" value="tdk" type="radio">
+		<label for="q3_tdk">Tidak Cepat</label>
+		<input name="quest_3" id="q3_krg" value="krg" type="radio">
+		<label for="q3_krg">Kurang Cepat</label>
+		<input name="quest_3" id="q3_ckp" value="ckp" type="radio">
+		<label for="q3_ckp">Cepat</label>
+		<input name="quest_3" id="q3_sgt" value="sgt" type="radio">
+		<label for="q3_sgt">Sangat Cepat</label>
+	</fieldset>
+    <br><a href="#tawab" class="nav" id="save-cepat">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="tawab" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang tanggung jawab petugas dalam memberi pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_4" id="q4_tdk" value="tdk" type="radio">
+		<label for="q4_tdk">Tidak Bertanggung Jawab</label>
+		<input name="quest_4" id="q4_krg" value="krg" type="radio">
+		<label for="q4_krg">Kurang Bertanggung Jawab</label>
+		<input name="quest_4" id="q4_ckp" value="ckp" type="radio">
+		<label for="q4_ckp">Bertanggung Jawab</label>
+		<input name="quest_4" id="q4_sgt" value="sgt" type="radio">
+		<label for="q4_sgt">Sangat Bertanggung Jawab</label>
+	</fieldset>
+    <br><a href="#disiplin" class="nav" id="save-tawab">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="disiplin" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kedisiplinan petugas dalam memberikan pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_5" id="q5_tdk" value="tdk" type="radio">
+		<label for="q5_tdk">Tidak Disiplin</label>
+		<input name="quest_5" id="q5_krg" value="krg" type="radio">
+		<label for="q5_krg">Kurang Disiplin</label>
+		<input name="quest_5" id="q5_ckp" value="ckp" type="radio">
+		<label for="q5_ckp">Disiplin</label>
+		<input name="quest_5" id="q5_sgt" value="sgt" type="radio">
+		<label for="q5_sgt">Sangat Disiplin</label>
+	</fieldset>
+    <br><a href="#manner" class="nav" id="save-disiplin">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="manner" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang perilaku petugas dalam memberi pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_6" id="q6_tdk" value="tdk" type="radio">
+		<label for="q6_tdk">Tidak Ramah dan Sopan</label>
+		<input name="quest_6" id="q6_krg" value="krg" type="radio">
+		<label for="q6_krg">Kurang Ramah dan Sopan</label>
+		<input name="quest_6" id="q6_ckp" value="ckp" type="radio">
+		<label for="q6_ckp">Ramah dan Sopan</label>
+		<input name="quest_6" id="q6_sgt" value="sgt" type="radio">
+		<label for="q6_sgt">Sangat Ramah dan Sopan</label>
+	</fieldset>
+    <br><a href="#jelas" class="nav" id="save-sikap">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="jelas" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kejelasan dari hasil pelayanan yang dibeikan petugas</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_7" id="q7_tdk" value="tdk" type="radio">
+		<label for="q7_tdk">Tidak Jelas</label>
+		<input name="quest_7" id="q7_krg" value="krg" type="radio">
+		<label for="q7_krg">Kurang Jelas</label>
+		<input name="quest_7" id="q7_ckp" value="ckp" type="radio">
+		<label for="q7_ckp">Jelas</label>
+		<input name="quest_7" id="q7_sgt" value="sgt" type="radio">
+		<label for="q7_sgt">Sangat Jelas</label>
+	</fieldset>
+    <br><a href="#mampu" class="nav" id="save-jelas">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="mampu" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kemampuan petugas dalam pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_8" id="q8_tdk" value="tdk" type="radio">
+		<label for="q8_tdk">Tidak Mampu</label>
+		<input name="quest_8" id="q8_krg" value="krg" type="radio">
+		<label for="q8_krg">Kurang Mampu</label>
+		<input name="quest_8" id="q8_ckp" value="ckp" type="radio">
+		<label for="q8_ckp">Mampu</label>
+		<input name="quest_8" id="q8_sgt" value="sgt" type="radio">
+		<label for="q8_sgt">Sangat Mampu</label>
+	</fieldset>
+    <br><a href="#biaya" class="nav" id="save-mampu">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="biaya" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Bagaimana pendapat Anda tentang kewajaran biaya / tarif dalam pelayanan</p>
+    <fieldset data-role="controlgroup">
+		<input name="quest_9" id="q9_sgm" value="sgm" type="radio">
+		<label for="q9_sgm">Sangat Mahal</label>
+		<input name="quest_9" id="q9_ckm" value="ckm" type="radio">
+		<label for="q9_ckm">Cukup Mahal</label>
+		<input name="quest_9" id="q9_mrh" value="mrh" type="radio">
+		<label for="q9_mrh">Murah</label>
+		<input name="quest_9" id="q9_grt" value="grt" type="radio">
+		<label for="q9_grt">Gratis</label>
+	</fieldset>
+    <br><a href="#masukan" class="nav" id="save-biaya">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+<!-- page role -->
+<div data-role="page" id="masukan" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Saran / masukan untuk kami:</p>
+	<textarea cols="40" rows="8" name="masukan" id="masukan">Tidak, Terima kasih</textarea>
+    <br><a href="#terimakasih" class="nav" id="save-saran">Berikutnya</a>
+  </div>
+</div> 
+<!-- page role -->
+
+
+<!-- page role -->
+<div data-role="page" id="terimakasih" class="container">
+  <div data-role="header">
+    <h1>STKM-REJASA</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <p class="question">Terima kasih</p>
+   
+    <br><a href="#grafik" class="nav" id="kamsia">Terima kasih</a>
+  </div>
+</div> 
+<!-- page role -->
+  
+  <div class="footer">
+    <b>Footer Text</b>
+  </div>
+</body>
+</html>
